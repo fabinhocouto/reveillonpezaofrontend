@@ -1,0 +1,239 @@
+<div class="rodada-container">
+    <div class="trevo-container">
+      <div class="trevo-background">
+        <img src="assets/trevo.png" alt="Trevo da Sorte" class="trevo-image">
+      </div>
+      <div class="trevo-text">Aposta da Sorte</div>
+    </div>
+    <button mat-stroked-button (click)="mostrarComoFunciona = !mostrarComoFunciona" class="botao-toggle">
+      <mat-icon>{{ mostrarComoFunciona ? 'expand_less' : 'expand_more' }}</mat-icon>
+      {{ mostrarComoFunciona ? 'Ocultar' : 'Regulamento' }}
+    </button>
+    <div class="como-funciona" *ngIf="mostrarComoFunciona">
+      <p>🎯 Funciona como um bingo moderno: você escolhe 6 números de 01 a 80 e, a cada sorteio da Quina, vai torcendo pra ir acertando e se aproximando do prêmio!</p>
+      <p>💥 Aposte quantas vezes quiser.</p>
+      <p>🏆 Ganha o prêmio quem acertar as 6 dezenas primeiro, não importa em qual sorteio. Se mais de um acertar no mesmo momento, o prêmio é dividido.</p>
+      <p>💰 O valor do prêmio depende do total arrecadado com as apostas — com 10% destinados à organização.</p>
+    </div>
+    <div class="grupo-whatsapp">
+      <a href="https://chat.whatsapp.com/E5K07Sj26VTL0bBoEo49Zk" target="_blank" rel="noopener noreferrer">
+        <mat-icon class="whatsapp-icon">groups</mat-icon>
+        <span>Entre no nosso grupo do WhatsApp para novidades, resultados e muito mais!</span>
+      </a>
+      
+    </div>
+    <div class="grupo-whatsapp">
+      <a href="https://wa.me/5531991001585" target="_blank" rel="noopener noreferrer">
+        <mat-icon class="whatsapp-icon">support_agent</mat-icon>
+        <span>Fale conosco para dúvidas, sugestões e suporte!</span>
+      </a>
+    </div>
+  <br>
+    <mat-card *ngIf="!rodadaInicial?.fechadaParaAposta; else rodadaFechada">
+      
+      <mat-card-title>Rodada número {{rodadaInicial.id}}</mat-card-title>
+      
+      <!-- Etapa Inicial -->
+      <mat-card-content *ngIf="etapa === 'inicial'">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Quantidade apostas confirmadas</mat-label>
+          <input matInput [value]="rodadaInicial.qtdParticipantes" readonly>
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Valor da Aposta</mat-label>
+          <input matInput [value]="'R$ ' + (rodadaInicial.valorAposta | number: '1.2-2')" readonly>
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Valor atual do prêmio</mat-label>
+          <input matInput [value]="'R$ ' + (rodadaInicial.valorPremio | number: '1.2-2')" readonly>
+        </mat-form-field>
+  
+        <!--mat-form-field appearance="outline" class="full-width">
+          <mat-label>Tempo fechamento rodada</mat-label>
+          <input matInput [value]="cronometro" readonly>
+        </mat-form-field-->
+  
+        <button mat-raised-button class="botao-verde"  (click)="apostar()">Fazer Aposta</button>
+      </mat-card-content>
+  
+      <!-- Etapa Dados -->
+      <mat-card-content *ngIf="etapa === 'dados'">
+
+        <!-- Aviso sobre o número do WhatsApp -->
+        <div class="aviso-whatsapp">
+          ⚠️ Informe um número de <strong>WhatsApp</strong> válido, pois a confirmação de pagamento será enviada por lá.
+        </div>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Nome</mat-label>
+          <input matInput [(ngModel)]="nome" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Telefone</mat-label>
+          <input matInput [(ngModel)]="telefone" mask="(00) 00000-0000" required>
+          <span matSuffix class="icone-whatsapp">
+            <img src="assets/whatsapp-icon.svg" alt="WhatsApp" width="34" height="34">
+          </span>
+        </mat-form-field>
+        
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Confirme o Telefone</mat-label>
+          <input matInput [(ngModel)]="telefoneConfirmado" required mask="(00) 00000-0000">
+          <span matSuffix class="icone-whatsapp">
+            <img src="assets/whatsapp-icon.svg" alt="WhatsApp" width="34" height="34">
+          </span>
+        </mat-form-field>
+
+        <div *ngIf="telefoneConfirmado && telefoneConfirmado !== telefone" class="telefone-erro">
+          Os números de telefone não coincidem.
+        </div>
+
+        <button mat-raised-button class="botao-verde"
+                [disabled]="!nome || !telefone || telefone !== telefoneConfirmado"
+                (click)="escolherNumeros()">Continuar</button>
+      </mat-card-content>
+
+
+  
+      <!-- Etapa Números -->
+      <mat-card-content *ngIf="etapa === 'numeros'">
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Quantidade de Apostas</mat-label>
+            <input matInput type="number" [(ngModel)]="quantidadeApostas" min="1" max="5" (ngModelChange)="atualizarApostas()">
+          </mat-form-field>
+          
+        <div class="numeros-selecionados">
+            <h3>Selecione seus números</h3>
+            <h3>(6 por aposta)</h3>
+
+            <div *ngFor="let aposta of apostas; let i = index" class="aposta-container">
+                <h4>Aposta {{ i + 1 }}</h4>
+                <div class="numeros-lista">
+                  <button mat-button *ngFor="let numero of numerosDisponiveis" 
+                          (click)="selecionarNumero(i, numero)" 
+                          [ngClass]="{'selecionado': aposta.includes(numero)}">
+                    {{ numero }}
+                  </button>
+                </div>
+                <div *ngIf="aposta.length > 0">
+                  <h5>Números Selecionados:</h5>
+                  <div class="numeros-selecionados-lista">
+                    <span *ngFor="let numero of aposta" class="numero-circulo selecionado">{{ numero }} </span>
+                  </div>
+                </div>
+              </div>              
+        </div>
+
+        <button mat-raised-button class="botao-verde" (click)="confirmarAposta()">Confirmar Aposta</button>
+    </mat-card-content>
+    
+    <!-- Etapa PIX -->
+    <mat-card-content *ngIf="etapa === 'pix'">
+      <h3>Pagamento via Pix</h3>
+
+      <p>Use o código abaixo para realizar o pagamento:</p>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Código Pix (Copia e Cola)</mat-label>
+        <input
+          matInput
+          [value]="codigoPix"
+          readonly
+          #pixInput
+          (click)="copiarPixCodigo(pixInput)"
+        />
+        <button mat-icon-button matSuffix (click)="copiarPixCodigo(pixInput)">
+          <mat-icon>content_copy</mat-icon>
+        </button>
+      </mat-form-field>
+      
+      <div *ngIf="copiado" class="mensagem-copiado">
+        Código Pix copiado!
+      </div>
+      
+      <ul class="pix-info-lista">
+        <li>
+          <strong>🕒 Validade do Pix:</strong> até {{ pixValidoAte }}.
+        </li>
+        <li>
+          <strong>📲 Confirmação via WhatsApp:</strong> será enviada automaticamente após o pagamento.
+        </li>
+        <li>
+          <strong>⚠️ Importante:</strong> se o pagamento não for identificado dentro do prazo, sua aposta será cancelada.
+        </li>
+      </ul>
+      
+     
+
+      <button mat-raised-button class="botao-verde" (click)="voltarInicio()">Voltar para início</button>
+    </mat-card-content>
+
+    </mat-card>
+  
+    <ng-template #rodadaFechada>
+      <mat-card>
+        <mat-card-content>
+          <mat-card-title>Rodada número {{rodadaInicial.id}}</mat-card-title>
+          <p>Rodada em andamento e fechada para apostas</p>
+
+          <!-- Dados da etapa inicial (sem botão de aposta) -->
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Número de apostas confirmadas</mat-label>
+            <input matInput [value]="rodadaInicial.qtdParticipantes" readonly>
+          </mat-form-field>
+    
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Valor do prêmio</mat-label>
+            <input matInput [value]="'R$ ' + (rodadaInicial.valorPremio | number: '1.2-2')" readonly>
+          </mat-form-field>
+    
+          <p><strong>Apostas confirmadas:</strong></p>
+          <div class="apostas-lista">
+          <div *ngFor="let aposta of rodadaInicial?.lstApostaUsuarioDTO" class="aposta-item"
+          [ngClass]="{'aposta-premiada': aposta.acertos === 6}">
+    
+    <!-- Linha com nome e telefone -->
+    <div class="linha-nome-telefone">
+      <span class="nome-usuario">
+        {{ aposta.nomeUsuario }}
+      </span>
+      <span class="telefone">{{ formatarTelefone(aposta.telefone) }}</span>
+    </div>
+
+    <!-- Linha com quantidade de acertos -->
+    <div class="linha-acertos">
+      <span *ngIf="aposta.acertos === 6"> 🏆</span>
+      <span class="quantidade-acertos">
+        {{ aposta.acertos }} {{ aposta.acertos >= 2 ? 'acertos' : 'acerto' }}
+      </span>
+      <span *ngIf="aposta.acertos === 6"> 🏆</span>
+    </div>
+
+    <!-- Linha com os números em bolinhas -->
+    <div class="linha-numeros">
+      <span class="numeros-aposta">
+        <span *ngFor="let numero of aposta.numeros.split(';')" 
+              [ngClass]="{ 'numero-acertado': numero.includes('*') }" 
+              class="numero-bolinha">
+          {{ numero.replace('*', '') }}
+        </span>
+      </span>
+    </div>
+
+  </div>
+</div>
+
+          
+        </mat-card-content>
+      </mat-card>
+    </ng-template>
+    
+    
+    
+    
+  </div>
+  

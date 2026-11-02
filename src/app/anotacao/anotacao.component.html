@@ -1,0 +1,64 @@
+<div class="container">
+    <!-- Formulário -->
+    <mat-card>
+      <mat-card-title>Gerenciar Anotações</mat-card-title>
+      <form [formGroup]="anotacaoForm">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Data</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="data">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="anotacaoForm.get('data')?.invalid && anotacaoForm.get('data')?.touched">
+            A data é obrigatória.
+          </mat-error>
+        </mat-form-field>
+      
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Descrição</mat-label>
+          <textarea matInput formControlName="descricao" maxlength="1000"></textarea>
+          <mat-hint align="end">{{ anotacaoForm.get('descricao')?.value?.length || 0 }}/1000</mat-hint>
+          <mat-error *ngIf="anotacaoForm.get('descricao')?.invalid && anotacaoForm.get('descricao')?.touched">
+            A descrição é obrigatória e deve ter no máximo 1000 caracteres.
+          </mat-error>
+        </mat-form-field>
+      
+        <button mat-raised-button color="primary" (click)="adicionarOuEditar()" [disabled]="!isFormValid">
+          {{ editando ? 'Atualizar' : 'Adicionar' }}
+        </button>
+        <button mat-raised-button color="warn" type="button" (click)="cancelar()" *ngIf="editando">
+            Cancelar
+          </button>
+      </form>
+    </mat-card>
+  
+    <!-- Tabela de Anotações -->
+    <table mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="data">
+          <th mat-header-cell *matHeaderCellDef> Data </th>
+          <td mat-cell *matCellDef="let anotacao"> {{ anotacao.data | date: 'dd/MM/yyyy' }} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="descricao">
+          <th mat-header-cell *matHeaderCellDef> Descrição </th>
+          <td mat-cell *matCellDef="let anotacao"> {{ anotacao.descricao }} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="acoes">
+          <th mat-header-cell *matHeaderCellDef> Ações </th>
+          <td mat-cell *matCellDef="let anotacao">
+            <button mat-icon-button (click)="editar(anotacao)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button (click)="excluir(anotacao)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <!-- Paginação -->
+    <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>

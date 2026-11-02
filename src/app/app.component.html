@@ -1,0 +1,37 @@
+<app-message></app-message>
+<mat-toolbar color="primary" *ngIf="showMenu" class="custom-toolbar">
+  <button mat-icon-button (click)="toggleMenu()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span class="toolbar-title">Reveillon Pezão</span>
+  <span class="spacer"></span>
+  <button mat-button (click)="logout()">
+    <mat-icon>logout</mat-icon>
+    <span>Sair</span>
+  </button>
+</mat-toolbar>
+
+<mat-sidenav-container *ngIf="showMenu">
+  <mat-sidenav #sidenav mode="side" opened>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/">
+        <mat-icon>home</mat-icon>
+        <span>Início</span>
+      </a>
+      <a mat-list-item routerLink="/usuario">
+        <mat-icon>person</mat-icon>
+        <span>Usuário</span>
+      </a>
+      <a mat-list-item routerLink="/convite">
+        <mat-icon>edit</mat-icon>
+        <span>Convites</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content *ngIf="showMenu">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<app-loading></app-loading>
+<router-outlet *ngIf="!showMenu"></router-outlet>

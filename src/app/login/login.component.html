@@ -1,0 +1,88 @@
+<div class="login-container">
+  <!-- Imagem do trevo de quatro folhas -->
+  <div class="trevo-container">
+    <div class="trevo-text">Reveillon</div>
+    <div>
+      <img src="assets/logo.png" >
+    </div>
+  </div>
+  
+
+  <mat-card class="login-card">
+    <mat-card-header>
+      <mat-card-title *ngIf="!showRegister">Login</mat-card-title>
+      <mat-card-title *ngIf="showRegister">Criar Conta</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <!-- Formulário de Login -->
+      <form *ngIf="!showRegister" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="fill" class="full-width" [ngClass]="{'valid-field': loginForm.get('username')?.valid && loginForm.get('username')?.touched, 'invalid-field': loginForm.get('username')?.invalid && loginForm.get('username')?.touched}">
+          <mat-label>Usuário</mat-label>
+          <input matInput formControlName="username" placeholder="Digite seu usuário">
+          <mat-error *ngIf="loginForm.get('username')?.hasError('required')">
+            Usuário é obrigatório.
+          </mat-error>
+        </mat-form-field>
+        
+        <mat-form-field appearance="fill" class="full-width" [ngClass]="{'valid-field': loginForm.get('password')?.valid && loginForm.get('password')?.touched, 'invalid-field': loginForm.get('password')?.invalid && loginForm.get('password')?.touched}">
+          <mat-label>Senha</mat-label>
+          <input matInput formControlName="password" type="password" placeholder="Digite sua senha">
+          <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+            Senha é obrigatória.
+          </mat-error>
+          <mat-error *ngIf="loginForm.get('password')?.hasError('minlength')">
+            Senha deve ter no mínimo 6 caracteres.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-error *ngIf="invalidCredentials" class="error-message">
+          Usuário ou senha inválidos.
+        </mat-error>
+
+        <mat-error *ngIf="serverOut" class="error-message">
+          Servidor offline.
+        </mat-error>
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">
+          Entrar
+        </button>
+      </form>
+
+      <!-- Formulário de Cadastro -->
+      <form *ngIf="showRegister" [formGroup]="registerForm" (ngSubmit)="onRegister()">
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Nome</mat-label>
+          <input matInput formControlName="name" placeholder="Digite seu nome">
+          <mat-error *ngIf="registerForm.get('name')?.hasError('required')">
+            Nome é obrigatório.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Usuário</mat-label>
+          <input matInput formControlName="username" placeholder="Digite seu usuário">
+          <mat-error *ngIf="registerForm.get('username')?.hasError('required')">
+            Usuário é obrigatório.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Senha</mat-label>
+          <input matInput formControlName="password" type="password" placeholder="Crie uma senha">
+          <mat-error *ngIf="registerForm.get('password')?.hasError('required')">
+            Senha é obrigatória.
+          </mat-error>
+          <mat-error *ngIf="registerForm.get('password')?.hasError('minlength')">
+            Senha deve ter no mínimo 6 caracteres.
+          </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid">
+          Cadastrar
+        </button>
+      </form>
+    </mat-card-content>
+
+    
+  </mat-card>
+</div>

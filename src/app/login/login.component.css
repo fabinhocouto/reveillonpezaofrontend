@@ -1,0 +1,105 @@
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1c1c25, #353541, #17171d);
+}
+
+/* Logo / Trevo */
+.trevo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.trevo-text {
+  font-size: 40px;
+  color: #ffffff;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
+}
+
+.trevo-background {
+  display: inline-block;
+  background: linear-gradient(135deg, #ffffff, #d9d9d9);
+  padding: 20px;
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.25);
+}
+
+.trevo-image {
+  width: 80px;
+  height: 80px;
+  display: block;
+  border-radius: 50%;
+}
+
+/* Card de login */
+mat-card {
+  width: 380px;
+  max-width: calc(100vw - 40px);
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+  background: linear-gradient(145deg, #ffffff, #f4f4f4);
+}
+
+mat-card-title {
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #c49a00;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 14px;
+}
+
+.error-message {
+  color: red;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Botões */
+button[mat-raised-button] {
+  width: 100%;
+  margin-top: 16px;
+  font-weight: bold;
+  color: white;
+  border-radius: 8px;
+}
+
+button[mat-raised-button][color="primary"] {
+  background: linear-gradient(135deg, #f5d76e, #c49a00);
+  color: #242424;
+}
+
+button[mat-raised-button][color="accent"] {
+  background: linear-gradient(135deg, #e8e8e8, #a8a8a8);
+  color: #222222;
+}
+
+/* Alternar login/cadastro */
+.toggle-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.toggle-container button {
+  color: #b38b00;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.toggle-container button:hover {
+  color: #e0b400;
+}

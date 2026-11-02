@@ -1,0 +1,151 @@
+.container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+mat-card {
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    background: white;
+    text-align: center;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+mat-card-title {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 15px;
+    display: block;
+    color: #10a157;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th.mat-header-cell {
+    background-color: #3f51b5;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    text-align: left;
+}
+
+td.mat-cell {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+mat-spinner {
+    display: block;
+    margin: 30px auto;
+}
+
+mat-paginator {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Estilização dos números dentro de círculos */
+.col-numeros {
+    flex-grow: 3;
+    width: 50%;
+    text-align: center;
+}
+
+.numero-container {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 6px; /* diminui o espaço entre as bolinhas */
+    padding: 8px; /* ajusta padding geral */
+    overflow-x: auto;
+  }
+
+.numeros-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 10px;
+    padding: 10px;
+    max-width: 600px;
+    margin: auto;
+    justify-items: center;
+}
+
+.numero-bola {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px; /* diminui de 30px para 24px */
+    height: 24px;
+    background-color: white;
+    color: #333;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 14px; /* diminui de 18px para 14px */
+    border: 2px solid #999;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+  }
+  
+
+.numero-bola:hover {
+    transform: scale(1.1);
+    border-color: #555;
+}
+
+.numero-bola.selecionado {
+    background-color: #00c853;
+    color: white;
+    border-color: #008c3a;
+}
+
+.numero-verde {
+    background-color: #00c853 !important;
+    color: white !important;
+    border-color: #008c3a !important;
+}
+
+.botao-apostar-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  button[mat-raised-button] {
+    font-weight: bold;
+    padding: 10px 30px;
+    font-size: 16px;
+  }
+  .botao-apostar-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .botao-apostar {
+    background-color: #10a157;
+    color: white;
+    font-weight: bold;
+    padding: 12px 32px;
+    font-size: 16px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .botao-apostar:hover {
+    background-color: #0d8043;
+    transform: scale(1.05);
+  }
+  
+  .botao-apostar:active {
+    background-color: #0b6a38;
+    transform: scale(0.95);
+  }
+  
+

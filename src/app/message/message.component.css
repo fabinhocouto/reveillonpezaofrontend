@@ -1,0 +1,29 @@
+.alert {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%); /* Centraliza horizontalmente */
+    padding: 15px 30px;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    z-index: 1000;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    min-width: 300px;
+    max-width: 80%;
+  }
+  
+  /* Cores para cada tipo de alerta */
+  .alert-success {
+    background-color: #4caf50; /* Verde */
+  }
+  
+  .alert-error {
+    background-color: #f44336; /* Vermelho */
+  }
+  
+  .alert-warning {
+    background-color: #ff9800; /* Laranja */
+  }
+  

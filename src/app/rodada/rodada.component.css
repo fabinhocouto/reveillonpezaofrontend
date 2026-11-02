@@ -1,0 +1,633 @@
+.rodada-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    padding-top: 20px;
+}
+
+.trevo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.trevo-text {
+    font-size: 30px;
+    color: #10a157;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.trevo-background {
+    display: inline-block;
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 50%;
+}
+
+.trevo-image {
+    width: 60px;
+    height: 60px;
+    display: block;
+    border-radius: 50%;
+}
+
+mat-card {
+    width: 300px;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    background: white;
+    text-align: center;
+    
+    
+}
+
+.rodada-em-andamento {
+    width: 600px;
+    max-width: 90%;
+    padding: 30px;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+mat-card-title {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #10a157;
+}
+
+.full-width {
+    width: 100%;
+    margin-bottom: 14px;
+}
+
+button[mat-raised-button] {
+    width: 100%;
+    margin-top: 16px;
+    font-weight: bold;
+    color: white;
+}
+
+button[mat-raised-button][color="warn"] {
+    background-color: #f4a000;
+}
+
+.col-numeros {
+    flex-grow: 3;
+    width: 50%;
+    text-align: center;
+}
+
+.numero-container {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px;
+    overflow-x: auto;
+}
+
+.numeros-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 10px;
+    padding: 10px;
+    max-width: 600px;
+    margin: auto;
+    justify-items: center;
+}
+
+.numero-bola {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    color: #333;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 18px;
+    border: 2px solid #999;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.numero-bola:hover {
+    transform: scale(1.1);
+    border-color: #555;
+}
+
+.numero-bola.selecionado {
+    background-color: #00c853;
+    color: white;
+    border-color: #008c3a;
+}
+
+.botao-confirmar {
+    width: 100%;
+    max-width: 250px;
+    padding: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #f4a000;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 15px;
+}
+
+.botao-confirmar:hover {
+    background-color: #d48c00;
+    transform: scale(1.05);
+}
+
+.botao-confirmar:active {
+    background-color: #b37400;
+    transform: scale(0.95);
+}
+
+.apostas-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 24px;
+  }
+  
+  .linha-aposta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 12px;
+    border-radius: 12px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .titulo-aposta {
+    font-weight: 600;
+    margin-right: 12px;
+    white-space: nowrap;
+    color: #333;
+    font-size: 16px;
+    min-width: 100px;
+  }
+  
+  .numero-campo {
+    width: 40px;
+    margin-right: 6px;
+  }
+  .numero-campo input[type="number"] {
+    -moz-appearance: textfield; /* Firefox */
+    -webkit-appearance: none;   /* Chrome, Safari, Opera */
+    appearance: none;           /* Modern browsers */
+  }
+  
+  .numero-campo input[type="number"]::-webkit-outer-spin-button,
+  .numero-campo input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .numeros-lista {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 6px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .numeros-lista button {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    min-width: unset;
+    padding: 0;
+    font-size: 11px;
+    background-color: white;
+    color: #333;
+    border: 1px solid #ccc;
+    transition: background-color 0.3s ease;
+  }
+  
+  .numeros-lista button.selecionado {
+    background-color: #4caf50;
+    color: white;
+    border: 1px solid #4caf50;
+  }
+
+  .telefone-erro {
+    color: red;
+    font-size: 13px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+  }
+  
+  .botao-verde {
+    background-color: #10a157; /* verde Material */
+    color: white;
+  }
+  
+  .botao-verde:hover {
+    background-color: #45A049;
+  }
+
+  .botao-verde:disabled {
+    background-color: #a5d6a7; /* um verde mais claro */
+    color: white;
+    opacity: 1; /* evita ficar com aparência apagada */
+    cursor: not-allowed;
+  }
+
+  .snack-success {
+    background-color: #4CAF50 !important;  /* verde */
+    color: #fff !important;
+  }
+  
+  .snack-error {
+    background-color: #f44336 !important;  /* vermelho */
+    color: #fff !important;
+  }
+  
+  .numero-circulo.selecionado {
+    background-color: #4CAF50;
+  }
+  .numero-circulo {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 21px;
+    height: 21px;
+    margin: 4px;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: bold;
+    border: 2px solid #4CAF50;
+    color: #fff;
+    background-color: transparent;
+  }
+  
+  .aposta-info {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+  
+  .nome-usuario {
+    font-weight: bold;
+  }
+  
+  .telefone {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  
+  .numeros-aposta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 5px;
+  }
+  
+  .numero {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightgray;
+    border-radius: 50%;
+    color: black;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  
+  .numero-acertado {
+    background-color: green;
+    color: white;
+  }
+  
+  .quantidade-acertos {
+    font-size: 14px;
+    color: #4CAF50;
+  }
+
+  .apostas-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .aposta-linha {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .nome-usuario {
+    font-weight: bold;
+    min-width: 120px;
+  }
+  
+  .telefone {
+    font-size: 14px;
+    color: #555;
+    min-width: 110px;
+  }
+  
+  .numeros-aposta {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+  }
+  
+  .numero-bolinha {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .numero-acertado {
+    background-color: green;
+    color: white;
+  }
+  
+  .quantidade-acertos {
+    margin-left: auto;
+    font-weight: bold;
+    color: #4CAF50;
+  }
+
+  .numero-bolinha {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .numero-acertado {
+    background-color: green;
+    color: white;
+  }
+  
+  .aposta-linha {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 6px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .nome-usuario {
+    font-weight: bold;
+    font-size: 14px;
+    min-width: 100px;
+  }
+  
+  .telefone {
+    font-size: 12px;
+    color: #555;
+    min-width: 90px;
+  }
+  
+  .numeros-aposta {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+  
+  .quantidade-acertos {
+    margin-left: auto;
+    font-weight: bold;
+    color: #4CAF50;
+    font-size: 13px;
+  }
+
+  .apostas-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .aposta-item {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd;
+  }
+    
+  .linha-inferior {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 4px;
+  }
+  
+  .numeros-aposta {
+    display: flex;
+    gap: 6px;
+  }
+  
+  .numero-bolinha {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+    border-radius: 50%;
+    background-color: #eee;
+    text-align: center;
+    line-height: 24px;
+  }
+  
+  .numero-acertado {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .quantidade-acertos {
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .linha-superior {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 14px;
+    padding-left: 0; /* Garante que não haja recuo */
+  }
+  
+  .aposta-item {
+    padding: 4px 0;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .linha-superior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    font-size: 14px;
+    margin-left: 0;
+    padding-left: 0;
+  }
+  
+  .nome-usuario {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+  }
+  
+  
+  .apostas-lista {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+  }
+
+  .aposta-premiada {
+  background: linear-gradient(135deg, #e6ffe6, #ccffcc);
+  border: 1px solid #38a169;
+  border-radius: 12px;
+  padding: 16px 20px; /* Aumentado para dar mais “respiro” */
+  margin-bottom: 12px;
+  box-shadow: 0 2px 4px rgba(56, 161, 105, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* Espaço entre os elementos filhos */
+}
+
+.aposta-premiada:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(56, 161, 105, 0.25);
+}
+
+
+  
+  
+  
+  .como-funciona {
+    margin-bottom: 16px;
+    padding: 16px;
+    background-color: #f1f8e9;
+    border-left: 4px solid #4caf50;
+    border-radius: 8px;
+  }
+  .como-funciona h2 {
+    margin-top: 0;
+    font-size: 20px;
+    color: #388e3c;
+  }
+  .aviso-whatsapp {
+    margin-bottom: 12px;
+    padding: 12px;
+    background-color: #fff8e1;
+    border-left: 4px solid #ff9800;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #e65100;
+  }
+
+  .pix-info-lista {
+    list-style: none;
+    padding-left: 0;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  
+  .pix-info-lista mat-icon {
+    vertical-align: middle;
+    margin-right: 6px;
+  }
+
+  .pix-info-lista {
+    list-style: none;
+    padding: 0;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+  
+  .pix-info-lista li {
+    margin-bottom: 8px;
+  }
+
+  .grupo-whatsapp {
+    margin-top: 16px;
+    text-align: center;
+  }
+  
+  .grupo-whatsapp a {
+    text-decoration: none;
+    color: #25D366; /* cor do WhatsApp */
+    font-weight: 500;
+    font-size: 14px;
+    display: inline-block;
+  }
+
+  .grupo-whatsapp {
+    margin-top: 16px;
+    text-align: center;
+  }
+  
+  .grupo-whatsapp a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: #25D366;
+    font-weight: 500;
+    font-size: 14px;
+  }
+  
+  .whatsapp-icon {
+    color: #25D366;
+  }
+  .botao-toggle {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .mensagem-copiado {
+    color: green;
+    font-size: 14px;
+    margin-top: 4px;
+  }
+
+  
+  
+  
+  
+  
+  
+  .linha-numeros {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 6px;
+}

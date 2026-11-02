@@ -1,0 +1,74 @@
+
+/* Toolbar - Réveillon */
+mat-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  background: linear-gradient(135deg, #25252d, #3b3b45, #1c1c23);
+  color: white;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+}
+
+/* Botões e ícones */
+mat-toolbar button,
+mat-toolbar .mat-icon-button {
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+}
+
+/* Espaçamento dos ícones */
+mat-toolbar .mat-button mat-icon,
+mat-toolbar .mat-icon-button mat-icon {
+  margin-right: 8px;
+}
+
+/* Título da toolbar */
+mat-toolbar span {
+  display: flex;
+  align-items: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #f5d76e;
+}
+
+/* Spacer */
+.spacer {
+  flex-grow: 1;
+}
+
+/* Navegação lateral */
+mat-nav-list a {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  color: #333333;
+  transition: background-color 0.3s ease;
+}
+
+mat-nav-list a mat-icon {
+  margin-right: 8px;
+  color: #b38b00;
+}
+
+/* Hover toolbar */
+mat-toolbar button:hover {
+  color: #f5d76e;
+}
+
+/* Ícones da toolbar */
+mat-toolbar mat-icon {
+  color: #e8e8e8;
+  transition: color 0.3s ease;
+}
+
+mat-toolbar button:hover mat-icon {
+  color: #f5d76e;
+}
+
+/* Hover menu lateral */
+mat-nav-list a:hover {
+  background-color: #f5f0df;
+  color: #b38b00;
+}
